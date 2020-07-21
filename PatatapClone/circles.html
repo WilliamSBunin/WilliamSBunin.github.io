@@ -344,12 +344,15 @@
             // Each frame, rotate the path by 3 degrees:
             //path.rotate(3);
 
-            for (var i = 0; i < myShapes.length; i++)
-            {
-                console.log(myShapes[i]);
+            for (var i = 0; i < myShapes.length; i++) {
                 // myShapes[i].fillColor.hue += 1;
                 myShapes[i].scale(.9);
                 myShapes[i].rotate(3);
+
+                if (myShapes[i].area < 1) {
+                    myShapes[i].remove();
+                    myShapes.splice(i, 1);
+                }
             }
         }
           
