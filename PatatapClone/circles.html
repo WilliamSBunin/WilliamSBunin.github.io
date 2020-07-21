@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Circles</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/circles.css">
+    <script type="text/javascript" src="assets/js/lib/paper-full.js"></script>
+    <script type="text/javascript" src="assets/js/lib/howler.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+        // // Create a Paper.js Path to draw a line into it:
+        // var path = new Path();
+        // // Give the stroke a color
+        // path.strokeColor = 'black';
+        // var start = new Point(100, 100);
+        // // Move to start and draw a line from there
+        // path.moveTo(start);
+        // // Note the plus operator on Point objects.
+        // // PaperScript does that for us, and much more!
+        // path.lineTo(start + [ 100, 100 ]);
+
+        // for (var i = 0; i < 100; i++)
+        // {            
+        //     for (var j = 0; j < 100; j++)
+        //     {     
+        //         var myCircle = new Path.Circle(new Point(i * 100, j * 100), 20);
+        //         // var myCircle = new Path.RegularPolygon(new Point(i * 100, j * 100), 3, 50);
+        //         // var myCircle = new Path.RegularPolygon(new Point(i * 100, j * 100), 3, 1 + 2*i + 3*j);
+        //         // var myCircle = new Path.RegularPolygon(new Point(i * 100, j * 100), 9, 500);
+                
+        //         myCircle.fillColor = 'rgb(' + (i*j)%256 + ', ' + (i*100)%256 + ', ' + (j*100)%256 + ')';
+        //         // myCircle.fillColor = 'rgb(' + (i*j)%256 + ', ' + (i*100)%256 + ', ' + (j*100)%256 + ')';
+        //     }
+        // }
+
+        // Create a centered text item at the center of the view:
+        // var text = new PointText({
+        //     point: view.center,
+        //     content: 'Click here to focus and then press some keys.',
+        //     justification: 'center',
+        //     fontSize: 15
+        // });
+
+        var maxWidth = Math.floor(view.size._width)
+        var maxHeight = Math.floor(view.size._height)
+        var sideMin = 3;
+        var sideMax = 10 - sideMin;
+        var shapeSizeMax = 100;
+
+        var myShapes = [];
+
+        var keyData = {
+            a: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/hmm.wav']
+                    // src: ['assets/sounds/bubbles.mp3']
+                }),
+                color: 'rgb(250, 0, 0)',
+            },
+            b: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/wellItsTuesday.wav']
+                    // src: ['assets/sounds/clay.mp3']
+                }),
+                color: 'rgb(150, 0, 0)',
+            },
+            c: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/tuesday.wav']
+                    // src: ['assets/sounds/confetti.mp3']
+                }),
+                color: 'rgb(50, 0, 0)',
+            },
+            d: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/tuesdayFast.wav']
+                    // src: ['assets/sounds/corona.mp3']
+                }),
+                color: 'rgb(0, 250, 0)',
+            },
+            e: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/tuesdayLong.wav']
+                    // src: ['assets/sounds/dotted-spiral.mp3']
+                }),
+                color: 'rgb(0, 150, 0)',
+            },
+            f: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/friday.wav']
+                    // src: ['assets/sounds/flash-1.mp3']
+                }),
+                color: 'rgb(0, 50, 0)',
+            },
+            g: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/breakfastOnly.wav']
+                    // src: ['assets/sounds/flash-2.mp3']
+                }),
+                color: 'rgb(0, 0, 250)',
+            },
+            h: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/frowningIsMyChoice.wav']
+                    // src: ['assets/sounds/flash-3.mp3']
+                }),
+                color: 'rgb(0, 0, 150)',
+            },
+            i: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/indoorVoiceLevel.wav']
+                    // src: ['assets/sounds/other/Leah.wav']
+                }),
+                color: 'rgb(0, 0, 50)',
+            },
+            j: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/outOfOrder.wav']
+                    // src: ['assets/sounds/glimmer.mp3']
+                }),
+                color: 'rgb(250, 250, 0)',
+            },
+            k: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/children.wav']
+                    // src: ['assets/sounds/moon.mp3']
+                }),
+                color: 'rgb(150, 250, 0)',
+            },
+            l: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/shutup.wav']
+                    // src: ['assets/sounds/pinwheel.mp3']
+                }),
+                color: 'rgb(50, 250, 0)',
+            },
+            m: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/caleryContent.wav']
+                    // src: ['assets/sounds/piston-1.mp3']
+                }),
+                color: 'rgb(250, 150, 0)',
+            },
+            n: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/140.wav']
+                    // src: ['assets/sounds/piston-2.mp3']
+                }),
+                color: 'rgb(250, 50, 0)',
+            },
+            o: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/160.wav']
+                    // src: ['assets/sounds/piston-3.mp3']
+                }),
+                color: 'rgb(0, 250, 250)',
+            },
+            p: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/butItsNot.wav']
+                    // src: ['assets/sounds/prism-1.mp3']
+                }),
+                color: 'rgb(0, 250, 150)',
+            },
+            q: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/sonBitch.wav']
+                    // src: ['assets/sounds/prism-2.mp3']
+                }),
+                color: 'rgb(0, 250, 50)',
+            },
+            r: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/whatInTheHell.wav']
+                    // src: ['assets/sounds/prism-3.mp3']
+                }),
+                color: 'rgb(250, 0, 250)',
+            },
+            s: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/spices.wav']
+                    // src: ['assets/sounds/splits.mp3']
+                }),
+                color: 'rgb(250, 0, 150)',
+            },
+            t: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/stopHighVoice.wav']
+                    // src: ['assets/sounds/squiggle.mp3']
+                }),
+                color: 'rgb(250, 0, 50)',
+            },
+            u: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/stopMidVoice.wav']
+                    // src: ['assets/sounds/wipe.mp3']
+                }),
+                color: 'rgb(250, 250, 250)',
+            },
+            v: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/stopLowVoice.wav']
+                    // src: ['assets/sounds/veil.mp3']
+                }),
+                color: 'rgb(250, 150, 250)',
+            },
+            w: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/noHighVoice.wav']
+                    // src: ['assets/sounds/ufo.mp3']
+                }),
+                color: 'rgb(250, 50, 250)',
+            },
+            x: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/noLowVoice.wav']
+                    // src: ['assets/sounds/timer.mp3']
+                }),
+                color: 'rgb(150, 250, 250)',
+            },
+            y: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/myself.wav']
+                    // src: ['assets/sounds/suspension.mp3']
+                }),
+                color: 'rgb(50, 250, 250)',
+            },
+            z: {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/pardon.wav']
+                    // src: ['assets/sounds/strike.mp3']
+                }),
+                color: 'rgb(250, 250, 150)',
+            },
+            "1": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/oooh.wav']
+                    // src: ['assets/sounds/zig-zag.mp3']
+                }),
+                color: 'rgb(250, 250, 50)',
+            },
+            "2": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/whatInThe.wav']
+                    // src: ['assets/sounds/other/candleMetalHitCandleHolder.wav']
+                }),
+                color: 'rgb(150, 150, 150)',
+            },
+            "3": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/noMore.wav']
+                    // src: ['assets/sounds/other/cat1.wav']
+                }),
+                color: 'rgb(150, 150, 50)',
+            },
+            "4": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/notHerpes.wav']
+                    // src: ['assets/sounds/other/ch.wav']
+                }),
+                color: 'rgb(150, 50, 150)',
+            },
+            "5": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/damnFool.wav']
+                    // src: ['assets/sounds/other/cough_x.wav']
+                }),
+                color: 'rgb(50, 150, 150)',
+            },
+            "6": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/woohoo.wav']
+                    // src: ['assets/sounds/other/gong.wav']
+                }),
+                color: 'rgb(50, 50, 50)',
+            },
+            "7": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/shout.wav']
+                    // src: ['assets/sounds/other/kick.wav']
+                }),
+                color: 'rgb(0, 0, 0)',
+            },
+            "8": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/nevermind.wav']
+                    // src: ['assets/sounds/other/kick.wav']
+                }),
+                color: 'rgb(0, 0, 0)',
+            },
+            "9": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/peeingOnMe.wav']
+                    // src: ['assets/sounds/other/kick.wav']
+                }),
+                color: 'rgb(0, 0, 0)',
+            },
+            "0": {
+                sound: new Howl({
+                    src: ['assets/sounds/wyatt/ooon.wav']
+                    // src: ['assets/sounds/other/kick.wav']
+                }),
+                color: 'rgb(0, 0, 0)',
+            }
+        }
+      
+
+        function onKeyDown(event) {
+
+            // When a key is pressed, set the content of the text item:
+            
+            // var myCircle = new Path.Circle(new Point(Math.floor(Math.random() * maxWidth), Math.floor(Math.random() * maxHeight)), 20);
+            // var myCircle = new Path.RegularPolygon(new Point(Math.floor(Math.random() * maxWidth), Math.floor(Math.random() * maxHeight)), Math.floor(Math.random() * sideMax) + sideMin, Math.floor(Math.random() * shapeSizeMax));;
+            
+            // myCircle.fillColor = 'red';
+            // myCircle.fillColor = 'rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')';
+            
+            var maxPoint = new Point(view.size.width, view.size.height);
+            var randomPoint = Point.random();
+            var point = maxPoint * randomPoint;
+            // var myCircle = new Path.Circle(point, 10).fillColor = "red";
+
+            if (keyData[event.key] != undefined)
+            {
+                keyData[event.key].sound.play();
+                // myCircle.fillColor = keyData[event.key].color;
+                
+                var raster = new Raster('wyattFace');
+                raster.position = point;
+
+                raster.rotate(Math.floor(Math.random() * 360));
+
+                myShapes.push(raster);
+             }
+             else {
+                var myCircle = new Path.RegularPolygon(point, Math.floor(Math.random() * sideMax) + sideMin, 300);
+                
+                myCircle.fillColor = 'rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')'
+                
+                myShapes.push(myCircle);
+             }
+        }
+
+        function onFrame(event) {
+            // Each frame, rotate the path by 3 degrees:
+            //path.rotate(3);
+
+            for (var i = 0; i < myShapes.length; i++)
+            {
+                console.log(myShapes[i]);
+                // myShapes[i].fillColor.hue += 1;
+                myShapes[i].scale(.9);
+                myShapes[i].rotate(3);
+            }
+        }
+          
+    </script>
+    <!-- 
+    <script type="text/paperscript" canvas="myCanvas2">
+        var path;
+        function onMouseDown(event) {
+            path = new Path();
+            path.strokeColor = 'black';
+            path.add(event.point);
+        }
+
+        function onMouseDrag(event) {
+            if(Key.isDown('a')) {
+                // If the 'a' key is down, change the point of
+                // the last segment to the position of the mouse:
+                path.lastSegment.point = event.point;
+            } else {
+                // If the a key is not down, add a segment
+                // to the path at the position of the mouse:
+                path.add(event.point);
+            }
+        }
+    </script>
+
+    <script type="text/paperscript" canvas="myCanvas3">
+        // The starting position of the line
+    var position = new Point(100, 100);
+
+    // The amount we will move when one of the keys is pressed:
+    var step = 10;
+
+    var path = new Path();
+    path.strokeColor = 'black';
+    path.add(position);
+
+    function onKeyDown(event) {
+        //left
+        var randomEvent = -1;
+
+        if(event.key == 'p'){
+            randomEvent = Math.floor(Math.random() * 8);
+        }
+
+        if(event.key == 'a' || randomEvent == 0) {
+            position.x -= step;
+        }
+
+        //right
+        if(event.key == 'd' || randomEvent == 1) {
+            position.x += step;
+        }
+
+        //up
+        if(event.key == 'w' || randomEvent == 2) {
+            position.y -= step;
+        }
+
+        //down
+        if(event.key == 's' || randomEvent == 3) {
+            position.y += step;
+        }
+
+        //left up
+        if(event.key == 'q' || randomEvent == 4) {
+            position.x -= step;            
+            position.y -= step;            
+        }
+
+        //right up
+        if(event.key == 'e' || randomEvent == 5) {
+            position.x += step;            
+            position.y -= step;            
+        }
+
+        //left down
+        if(event.key == 'z' || randomEvent == 6) {
+            position.x -= step;            
+            position.y += step;            
+        }
+
+        //right down
+        if(event.key == 'c' || randomEvent == 7) {
+            position.x += step;            
+            position.y += step;            
+        }
+
+        path.add(position);
+    }
+    </script> -->
+    <script>
+        function ChangeImage(canvasID, imageID) {
+            var image = new Image();
+            var canvas = document.getElementById(canvasID);
+            // image.src = canvas.toDataURL("image/png");
+            document.getElementById(imageID).src = canvas.toDataURL("image/png")
+        }
+    </script>
+</head>
+
+<body>
+    <img id="wyattFace" style="display:none" src="assets/img/wyattFace.png">
+
+    <canvas id="myCanvas" resize></canvas>
+
+    <!-- <button onclick="ChangeImage('myCanvas', 'myImage1')">Convert above to image</button>
+    <img id="myImage1" src="https://davidwalsh.name/demo/ringo-ftw.jpg">
+
+    <canvas id="myCanvas2" resize></canvas>
+    <button onclick="ChangeImage('myCanvas2', 'myImage2')">Convert above to image</button>
+    <img id="myImage2" src="https://davidwalsh.name/demo/ringo-ftw.jpg">
+
+    <canvas id="myCanvas3" resize></canvas>
+    <button onclick="ChangeImage('myCanvas3', 'myImage3')">Convert above to image</button>
+    <img id="myImage3" src="https://davidwalsh.name/demo/ringo-ftw.jpg"> -->
+</body>
+
+</html>

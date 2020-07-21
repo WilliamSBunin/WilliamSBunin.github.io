@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Circles</title>
+    <script type="text/javascript" src="assets/js/lib/paper-full.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+        // Create a Paper.js Path to draw a line into it:
+        var path = new Path();
+        // Give the stroke a color
+        path.strokeColor = 'black';
+        var start = new Point(50, 50);
+        var currentPoint = start;
+        // Move to start and draw a line from there
+        path.moveTo(start);
+
+        var myX = 0
+        var myY = 0
+        setInterval(draw, 20);
+
+        function draw() {
+            // Note the plus operator on Point objects.
+            // PaperScript does that for us, and much more!
+            path.lineTo(currentPoint + [ myX, myY]);
+            currentPoint = currentPoint + [ myX, myY]
+            
+            if (Math.floor(Math.random() * 2) == 0){
+                myX = myX + Math.floor(Math.random() * 2);
+            } else {
+                myX = myX - Math.floor(Math.random() * 2);
+            }
+
+            if (Math.floor(Math.random() * 2) == 0){
+                myY = myY + Math.floor(Math.random() * 2);
+            } else {
+                myY = myY - Math.floor(Math.random() * 2);
+            }
+
+            while (currentPoint.x + myX < 0)
+            {
+                myX++;
+            }
+
+            while (currentPoint.x + myX > 200)
+            {
+                myX--;
+            }
+
+            while (currentPoint.y + myY < 0)
+            {
+                myY++;
+            }
+
+            while (currentPoint.y + myY > 120)
+            {
+                myY--;
+            }
+
+
+
+            console.log(myX, myY)
+        }
+
+    </script>
+    <script type="text/paperscript" canvas="myCanvas2">
+        // Create a Paper.js Path to draw a line into it:
+        var path = new Path();
+        // Give the stroke a color
+        path.strokeColor = 'red';
+        var start = new Point(50, 50);
+        var currentPoint = start;
+        // Move to start and draw a line from there
+        path.moveTo(start);
+
+        var myX = 0
+        var myY = 0
+        setInterval(draw, 20);
+
+        function draw() {
+            // Note the plus operator on Point objects.
+            // PaperScript does that for us, and much more!
+            path.lineTo(currentPoint + [ myX, myY]);
+            currentPoint = currentPoint + [ myX, myY]
+            
+            if (Math.floor(Math.random() * 2) == 0){
+                myX = myX + Math.floor(Math.random() * 2);
+            } else {
+                myX = myX - Math.floor(Math.random() * 2);
+            }
+
+            if (Math.floor(Math.random() * 2) == 0){
+                myY = myY + Math.floor(Math.random() * 2);
+            } else {
+                myY = myY - Math.floor(Math.random() * 2);
+            }
+
+            while (currentPoint.x + myX < 0)
+            {
+                myX++;
+            }
+
+            while (currentPoint.x + myX > 200)
+            {
+                myX--;
+            }
+
+            while (currentPoint.y + myY < 0)
+            {
+                myY++;
+            }
+
+            while (currentPoint.y + myY > 120)
+            {
+                myY--;
+            }
+
+
+
+            console.log(myX, myY)
+        }
+
+    </script>
+    <script type="text/paperscript" canvas="myCanvas3">
+        // Create a Paper.js Path to draw a line into it:
+        var path = new Path();
+        // Give the stroke a color
+        path.strokeColor = 'green';
+        var start = new Point(50, 50);
+        var currentPoint = start;
+        // Move to start and draw a line from there
+        path.moveTo(start);
+
+        var myX = 0
+        var myY = 0
+        setInterval(draw, 20);
+
+        function draw() {
+            // Note the plus operator on Point objects.
+            // PaperScript does that for us, and much more!
+            path.lineTo(currentPoint + [ myX, myY]);
+            currentPoint = currentPoint + [ myX, myY]
+            
+            if (Math.floor(Math.random() * 2) == 0){
+                myX = myX + Math.floor(Math.random() * 2);
+            } else {
+                myX = myX - Math.floor(Math.random() * 2);
+            }
+
+            if (Math.floor(Math.random() * 2) == 0){
+                myY = myY + Math.floor(Math.random() * 2);
+            } else {
+                myY = myY - Math.floor(Math.random() * 2);
+            }
+
+            while (currentPoint.x + myX < 0)
+            {
+                myX++;
+            }
+
+            while (currentPoint.x + myX > 200)
+            {
+                myX--;
+            }
+
+            while (currentPoint.y + myY < 0)
+            {
+                myY++;
+            }
+
+            while (currentPoint.y + myY > 120)
+            {
+                myY--;
+            }
+
+
+
+            console.log(myX, myY)
+        }
+
+    </script>
+    <script type="text/paperscript" canvas="myCanvas4">
+        // Create a Paper.js Path to draw a line into it:
+        var path = new Path();
+        // Give the stroke a color
+        path.strokeColor = 'orange';
+        var start = new Point(50, 50);
+        var currentPoint = start;
+        // Move to start and draw a line from there
+        path.moveTo(start);
+
+        var myX = 0
+        var myY = 0
+        setInterval(draw, 20);
+
+        function draw() {
+            // Note the plus operator on Point objects.
+            // PaperScript does that for us, and much more!
+            path.lineTo(currentPoint + [ myX, myY]);
+            currentPoint = currentPoint + [ myX, myY]
+            
+            if (Math.floor(Math.random() * 2) == 0){
+                myX = myX + Math.floor(Math.random() * 2);
+            } else {
+                myX = myX - Math.floor(Math.random() * 2);
+            }
+
+            if (Math.floor(Math.random() * 2) == 0){
+                myY = myY + Math.floor(Math.random() * 2);
+            } else {
+                myY = myY - Math.floor(Math.random() * 2);
+            }
+
+            while (currentPoint.x + myX < 0)
+            {
+                myX++;
+            }
+
+            while (currentPoint.x + myX > 200)
+            {
+                myX--;
+            }
+
+            while (currentPoint.y + myY < 0)
+            {
+                myY++;
+            }
+
+            while (currentPoint.y + myY > 120)
+            {
+                myY--;
+            }
+
+
+
+            console.log(myX, myY)
+        }
+
+    </script>
+    <script type="text/paperscript" canvas="myCanvas5">
+        // Create a Paper.js Path to draw a line into it:
+        var path = new Path();
+        // Give the stroke a color
+        path.strokeColor = 'yellow';
+        var start = new Point(50, 50);
+        var currentPoint = start;
+        // Move to start and draw a line from there
+        path.moveTo(start);
+
+        var myX = 0
+        var myY = 0
+        setInterval(draw, 20);
+
+        function draw() {
+            // Note the plus operator on Point objects.
+            // PaperScript does that for us, and much more!
+            path.lineTo(currentPoint + [ myX, myY]);
+            currentPoint = currentPoint + [ myX, myY]
+            
+            if (Math.floor(Math.random() * 2) == 0){
+                myX = myX + Math.floor(Math.random() * 2);
+            } else {
+                myX = myX - Math.floor(Math.random() * 2);
+            }
+
+            if (Math.floor(Math.random() * 2) == 0){
+                myY = myY + Math.floor(Math.random() * 2);
+            } else {
+                myY = myY - Math.floor(Math.random() * 2);
+            }
+
+            while (currentPoint.x + myX < 0)
+            {
+                myX++;
+            }
+
+            while (currentPoint.x + myX > 200)
+            {
+                myX--;
+            }
+
+            while (currentPoint.y + myY < 0)
+            {
+                myY++;
+            }
+
+            while (currentPoint.y + myY > 120)
+            {
+                myY--;
+            }
+
+
+
+            console.log(myX, myY)
+        }
+
+    </script>
+    <script type="text/paperscript" canvas="myCanvas6">
+        // Create a Paper.js Path to draw a line into it:
+        var path = new Path();
+        // Give the stroke a color
+        path.strokeColor = 'purple';
+        var start = new Point(50, 50);
+        var currentPoint = start;
+        // Move to start and draw a line from there
+        path.moveTo(start);
+
+        var myX = 0
+        var myY = 0
+        setInterval(draw, 20);
+
+        function draw() {
+            // Note the plus operator on Point objects.
+            // PaperScript does that for us, and much more!
+            path.lineTo(currentPoint + [ myX, myY]);
+            currentPoint = currentPoint + [ myX, myY]
+            
+            if (Math.floor(Math.random() * 2) == 0){
+                myX = myX + Math.floor(Math.random() * 2);
+            } else {
+                myX = myX - Math.floor(Math.random() * 2);
+            }
+
+            if (Math.floor(Math.random() * 2) == 0){
+                myY = myY + Math.floor(Math.random() * 2);
+            } else {
+                myY = myY - Math.floor(Math.random() * 2);
+            }
+
+            while (currentPoint.x + myX < 0)
+            {
+                myX++;
+            }
+
+            while (currentPoint.x + myX > 200)
+            {
+                myX--;
+            }
+
+            while (currentPoint.y + myY < 0)
+            {
+                myY++;
+            }
+
+            while (currentPoint.y + myY > 120)
+            {
+                myY--;
+            }
+
+
+
+            console.log(myX, myY)
+        }
+
+    </script>
+    <script type="text/paperscript" canvas="myCanvas7">
+        // Create a Paper.js Path to draw a line into it:
+        var path = new Path();
+        // Give the stroke a color
+        path.strokeColor = '#46d6f4';
+        var start = new Point(50, 50);
+        var currentPoint = start;
+        // Move to start and draw a line from there
+        path.moveTo(start);
+
+        var myX = 0
+        var myY = 0
+        setInterval(draw, 20);
+
+        function draw() {
+            // Note the plus operator on Point objects.
+            // PaperScript does that for us, and much more!
+            path.lineTo(currentPoint + [ myX, myY]);
+            currentPoint = currentPoint + [ myX, myY]
+            
+            if (Math.floor(Math.random() * 2) == 0){
+                myX = myX + Math.floor(Math.random() * 2);
+            } else {
+                myX = myX - Math.floor(Math.random() * 2);
+            }
+
+            if (Math.floor(Math.random() * 2) == 0){
+                myY = myY + Math.floor(Math.random() * 2);
+            } else {
+                myY = myY - Math.floor(Math.random() * 2);
+            }
+
+            while (currentPoint.x + myX < 0)
+            {
+                myX++;
+            }
+
+            while (currentPoint.x + myX > 200)
+            {
+                myX--;
+            }
+
+            while (currentPoint.y + myY < 0)
+            {
+                myY++;
+            }
+
+            while (currentPoint.y + myY > 120)
+            {
+                myY--;
+            }
+
+
+
+            console.log(myX, myY)
+        }
+
+    </script>
+    <script type="text/paperscript" canvas="myCanvas8">
+        // Create a Paper.js Path to draw a line into it:
+        var path = new Path();
+        // Give the stroke a color
+        path.strokeColor = '#ce5098';
+        var start = new Point(50, 50);
+        var currentPoint = start;
+        // Move to start and draw a line from there
+        path.moveTo(start);
+
+        var myX = 0
+        var myY = 0
+        setInterval(draw, 20);
+
+        function draw() {
+            // Note the plus operator on Point objects.
+            // PaperScript does that for us, and much more!
+            path.lineTo(currentPoint + [ myX, myY]);
+            currentPoint = currentPoint + [ myX, myY]
+            
+            if (Math.floor(Math.random() * 2) == 0){
+                myX = myX + Math.floor(Math.random() * 2);
+            } else {
+                myX = myX - Math.floor(Math.random() * 2);
+            }
+
+            if (Math.floor(Math.random() * 2) == 0){
+                myY = myY + Math.floor(Math.random() * 2);
+            } else {
+                myY = myY - Math.floor(Math.random() * 2);
+            }
+
+            while (currentPoint.x + myX < 0)
+            {
+                myX++;
+            }
+
+            while (currentPoint.x + myX > 200)
+            {
+                myX--;
+            }
+
+            while (currentPoint.y + myY < 0)
+            {
+                myY++;
+            }
+
+            while (currentPoint.y + myY > 120)
+            {
+                myY--;
+            }
+
+
+
+            console.log(myX, myY)
+        }
+
+    </script>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <canvas id="myCanvas2"></canvas>
+    <canvas id="myCanvas3"></canvas>
+    <canvas id="myCanvas4"></canvas>
+    <canvas id="myCanvas5"></canvas>
+    <canvas id="myCanvas6"></canvas>
+    <canvas id="myCanvas7"></canvas>
+    <canvas id="myCanvas8"></canvas>
+</body>
+
+</html>
