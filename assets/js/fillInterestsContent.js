@@ -10,6 +10,24 @@ document.querySelector("#interestsContent").innerHTML = `
         <div class="col-6">
             This is not a complete list. I love so many songs! These are just a fw that I have added.
         </div>
+        
+        <h1>I did not make the following. I just use it so I can listen to music in my car...</h1>
+
+
+
+<iframe src="https://youtube-playlist-randomizer.bitbucket.io/" title="Random Music" width="100%" height="800px">
+</iframe>
+
+<script>
+navigator.mediaSession.setActionHandler('nexttrack', function() {
+      document.querySelector("#next").click()
+    });
+navigator.mediaSession.setActionHandler('previoustrack', function() {
+      document.querySelector("#prev").click()
+    });
+</script>
+
+
     </div>
 </div>
 <div class="jumbotron">
