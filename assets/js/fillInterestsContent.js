@@ -10,7 +10,15 @@ document.querySelector("#interestsContent").innerHTML = `
         <div class="col-6">
             This is not a complete list. I love so many songs! These are just a fw that I have added.
         </div>
-        
+    </div>
+</div>
+<div class="jumbotron">
+    <h2>Hobbies</h2>
+</div>
+<div class="jumbotron">
+    <h2>Goals</h2>
+</div>
+
         <h1>I did not make the following. I just use it so I can listen to music in my car...</h1>
 
 
@@ -26,14 +34,4 @@ navigator.mediaSession.setActionHandler('previoustrack', function() {
       document.querySelector("#prev").click()
     });
 </script>
-
-
-    </div>
-</div>
-<div class="jumbotron">
-    <h2>Hobbies</h2>
-</div>
-<div class="jumbotron">
-    <h2>Goals</h2>
-</div>
 `;
