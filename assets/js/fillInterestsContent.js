@@ -13,6 +13,10 @@ navigator.mediaSession.setActionHandler('nexttrack', function() {
 navigator.mediaSession.setActionHandler('previoustrack', function() {
       document.querySelector("#prev").click()
     });
+    
+    window.addEventListener('keydown', function (e) {
+  document.querySelector('body').innerHTML = `You pressed ${e.key}`;
+}, false);
 </script>
 
 <div class="jumbotron">
