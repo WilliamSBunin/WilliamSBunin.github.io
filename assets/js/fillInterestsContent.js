@@ -1,12 +1,3 @@
-document.querySelector("#interestsContent").innerHTML = `
-<h1>I did not make the following. I just use it so I can listen to music in my car...</h1>
-
-
-
-<iframe src="https://youtube-playlist-randomizer.bitbucket.io/" title="Random Music" width="100%" height="800px">
-</iframe>
-
-<script>
 navigator.mediaSession.setActionHandler('nexttrack', function() {
       document.querySelector("#next").click()
     });
@@ -17,7 +8,14 @@ navigator.mediaSession.setActionHandler('previoustrack', function() {
     window.addEventListener('keydown', function (e) {
   document.querySelector('#interestsContent').innerHTML = "You pressed " + e.key;
 }, false);
-</script>
+
+document.querySelector("#interestsContent").innerHTML = `
+<h1>I did not make the following. I just use it so I can listen to music in my car...</h1>
+
+
+
+<iframe src="https://youtube-playlist-randomizer.bitbucket.io/" title="Random Music" width="100%" height="800px">
+</iframe>
 
 <p></p>
 
