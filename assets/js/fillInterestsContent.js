@@ -15,9 +15,11 @@ navigator.mediaSession.setActionHandler('previoustrack', function() {
     });
     
     window.addEventListener('keydown', function (e) {
-  document.querySelector('body').innerHTML = "You pressed \${e.key}";
+  document.querySelector('p').innerHTML = ``You pressed \${e.key}``;
 }, false);
 </script>
+
+<p></p>
 
 <div class="jumbotron">
     <h2>Music</h2>
