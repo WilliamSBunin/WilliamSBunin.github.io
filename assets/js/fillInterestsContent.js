@@ -10,7 +10,7 @@ document.querySelector("#interestsContent").innerHTML = `
 <p></p>
 
 <div class="jumbotron">
-    <h2>Music</h2>
+    <h2>Music</h2><button onclick="myFunction()">resize</button>
 </div>
 <div class="container">
     <div class="row">
@@ -41,3 +41,9 @@ navigator.mediaSession.setActionHandler('previoustrack', function() {
     window.addEventListener('keydown', function (e) {
   document.querySelector('#interestsContent').innerHTML = "You pressed " + e.key;
 }, false);
+
+function myFunction()
+{
+    document.querySelector("#next").style.height = "1000px";
+    document.querySelector("#next").style.width = "1000px";
+}
